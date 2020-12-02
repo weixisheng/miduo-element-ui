@@ -1,0 +1,114 @@
+@import "mixins/mixins";
+@import "common/var";
+
+@include b(red-envelope) {
+  -webkit-border-radius: $--border-radius-base;
+  -moz-border-radius: $--border-radius-base;
+  border-radius: $--border-radius-base;
+  background-color: $--background-color-base;
+  transition: $--all-transition;
+  font-size: $--font-size-base;
+  line-height: $--font-line-height-secondary;
+  color: $--color-text-primary;
+
+    .el-dialog__header {
+      position: relative;
+      padding: 20px 0 19px 20px;
+      background-color: $--color-white;
+
+      .el-dialog__title {
+        color: $--color-black;
+        font-size: $--font-size-medium;
+        line-height: $--font-line-height-secondary;
+        font-weight: $--font-weight-primary;
+      }
+
+      .el-dialog__headerbtn {
+        top: 20px;
+        right: 15px;
+      }
+
+      .el-button--text {
+        padding: 0;
+        vertical-align: text-bottom;
+      }
+
+      .el-divider--vertical {
+        margin: 0 6px 0 20px;
+        vertical-align: text-top;
+      }
+    }
+
+    .el-dialog__body {
+      padding: 16px 20px 30px;
+      //height: 580px;
+      background-color: $--color-white;
+
+      @include e(inline-statement) {
+        padding: 12px 20px;
+        color: $--color-text-regular;
+        background-color: #fef4ea;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+      }
+
+      .el-form {
+        margin-top: 20px;
+
+        .el-form-item {
+          margin-bottom: 0;
+
+          &:nth-child(2) {
+            margin-right: 20px;
+          }
+
+          .el-select {
+            width: 140px;
+          }
+
+          .el-form-item__content > .el-input {
+            width: 200px;
+          }
+        }
+      }
+
+      .el-table {
+        margin-top: 20px;
+
+        &::before {
+          display: none;
+        }
+
+        @include e(table-header) {
+          th {
+            color: $--color-text-regular;
+            background-color: $--background-color-base;
+
+            .cell {
+              line-height: 26px;
+              font-weight: 400;
+            }
+          }
+        }
+
+        @include e(table-column) {
+          color: $--color-black;
+
+          @at-root #{selector-unify(&, "th")} {
+            border: none !important;
+          }
+
+          @at-root #{selector-unify(&, "td")} {
+            padding: 10px 0;
+            border-color: $--border-color-light;
+          }
+        }
+      }
+
+      .el-pagination {
+        margin-top: 20px;
+        text-align: right;
+      }
+    }
+}

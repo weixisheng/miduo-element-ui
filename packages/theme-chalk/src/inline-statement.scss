@@ -1,0 +1,46 @@
+@import "mixins/mixins";
+@import "common/var";
+
+$typeMap: (
+  default: $--link-default-font-color,
+  primary: $--link-primary-font-color,
+  danger: $--link-danger-font-color,
+  success: $--link-success-font-color,
+  warning: $--link-warning-font-color,
+  info: $--link-info-font-color
+);
+
+@include b(inline-statement) {
+  padding: 15px 10px;
+  -webkit-border-radius: $--border-radius-base;
+  -moz-border-radius: $--border-radius-base;
+  border-radius: $--border-radius-base;
+  background-color: $--background-color-base;
+  transition: $--all-transition;
+  color: $--color-info;
+  font-size: $--font-size-base;
+  line-height: $--font-line-height-secondary;
+
+  @include e(item) {
+    margin: 10px 0 0;
+
+    &:first-child {
+      margin: 0;
+    }
+
+    @include e(plaintext) {
+      display: inline-flex;
+      vertical-align: middle;
+      cursor: default;
+
+      @each $type, $color in $typeMap {
+        &.el-link--#{$type} {
+          color: $color;
+          &:hover {
+            color: $color
+          }
+        }
+      }
+    }
+  }
+}

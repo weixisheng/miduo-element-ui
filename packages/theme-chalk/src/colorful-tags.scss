@@ -1,0 +1,87 @@
+@import "mixins/mixins";
+@import "common/var";
+
+@mixin tagStyle() {
+  .el-tag {
+    color: $--color-white;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+  }
+}
+
+@include b(colorful-tags) {
+  display: flex;
+
+  @include tagStyle;
+
+  @include e(ellipsis) {
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+
+    @include when(center) {
+      justify-content: center;
+    }
+
+    .el-tag {
+      margin-left: 8px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+
+    @include e(ellipsis-plaintext) {
+      white-space: nowrap;
+      overflow: hidden;
+      color: $--color-black;
+      font-size: $--font-size-base;
+      line-height: $--font-line-height-primary;
+    }
+  }
+
+  @include e(popover-wrapper) {
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 5px;
+    cursor: pointer;
+    -webkit-box-shadow: -8px 0 10px -8px rgba(0, 0, 0, .4);
+    -moz-box-shadow: -8px 0 10px -8px rgba(0, 0, 0, .4);
+    box-shadow: -8px 0 10px -8px rgba(0, 0, 0, .4);
+
+    @include e(ellipsis-trigger) {
+      transform: rotate(-90deg);
+      color: $--color-text-regular;
+      font-size: $--font-size-base;
+    }
+
+    @include e(full) {
+      display: flex;
+      flex-flow: wrap;
+      padding: 0 8px 8px 0;
+
+      @include when(plaintext) {
+        padding: 8px;
+        color: $--color-black;
+        font-size: $--font-size-base;
+      }
+
+      .el-tag {
+        margin-top: 8px;
+        margin-left: 8px;
+      }
+
+      @include tagStyle;
+    }
+  }
+
+  @include e(popover) {
+    min-width: 235px;
+    max-width: 335px;
+
+    &[x-placement^="right"] {
+      margin-left: 5px;
+    }
+  }
+}

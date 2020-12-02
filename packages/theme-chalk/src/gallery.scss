@@ -1,0 +1,416 @@
+@import "mixins/mixins";
+@import "common/var";
+
+@include b(gallery) {
+  -webkit-border-radius: $--border-radius-base;
+  -moz-border-radius: $--border-radius-base;
+  border-radius: $--border-radius-base;
+  background-color: $--background-color-base;
+  transition: $--all-transition;
+  font-size: $--font-size-base;
+  line-height: $--font-line-height-secondary;
+  color: $--color-text-primary;
+
+    .el-dialog__header {
+      position: relative;
+      padding: 20px 0 19px 20px;
+      background-color: $--color-white;
+
+      .el-dialog__title {
+        color: $--color-black;
+        font-size: $--font-size-medium;
+        line-height: $--font-line-height-secondary;
+        font-weight: $--font-weight-primary;
+      }
+
+      @include e(selected) {
+        margin-left: 10px;
+        color: $--color-text-secondary;
+      }
+
+      .el-dialog__headerbtn {
+        top: 20px;
+        right: 15px;
+      }
+
+      .el-button--text {
+        padding: 0;
+        vertical-align: text-bottom;
+      }
+
+      .el-divider--vertical {
+        margin: 0 6px 0 20px;
+        vertical-align: text-top;
+      }
+    }
+
+    .el-dialog__body {
+      padding: 0;
+      background-color: $--color-white;
+
+      > div {
+        height: 580px;
+      }
+
+      @include e(remote) {
+        display: flex;
+
+        @include e(categories) {
+          width: 190px;
+          color: $--color-text-regular;
+          font-weight: $--font-weight-primary;
+          background-color: $--background-color-base;
+          overflow-y: auto;
+
+          @include e(category) {
+            position: relative;
+            padding: 17px 0 17px 20px;
+            cursor: pointer;
+            overflow: hidden;
+
+            &::before {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              width: 4px;
+              background-color: transparent;
+              content: "";
+              -webkit-border-radius: 0 $--border-radius-base $--border-radius-base 0;
+              -moz-border-radius: 0 $--border-radius-base $--border-radius-base 0;
+              border-radius: 0 $--border-radius-base $--border-radius-base 0;
+            }
+
+            @include e(category-summary) {
+              color: $--color-text-secondary;
+            }
+
+            @include m(active) {
+              background-color: $--color-white;
+
+              &::before {
+                background-color: $--color-success;
+              }
+            }
+
+            &:hover {
+              background-color: $--color-white;
+            }
+          }
+        }
+
+        @include e(main) {
+          flex: 2;
+          position: relative;
+
+          @include e(content) {
+            margin-top: 20px;
+            padding: 0 19px;
+            min-height: 470px;
+            font-size: $--font-size-extra-small;
+
+            @include e(row) {
+              display: table;
+              margin: 0;
+              padding: 0;
+              width: 100%;
+
+              @include e(item) {
+                position: relative;
+                float: left;
+                margin-left: 18px;
+                width: 120px;
+                list-style: none;
+                cursor: pointer;
+
+                &:first-child {
+                  margin-left: 0;
+                }
+
+                .el-image {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  width: inherit;
+                  height: 120px;
+                  vertical-align: middle;
+                  -webkit-border-radius: #{$--border-radius-base - 1};
+                  -moz-border-radius: #{$--border-radius-base - 1};
+                  border-radius: #{$--border-radius-base - 1};
+
+                  &::before {
+                    display: none;
+                    position: absolute;
+                    z-index: 999;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    content: "";
+                    border: 2px $--border-style-base $--color-success
+                  }
+
+                  &::after {
+                    display: none;
+                    position: absolute;
+                    content: "";
+                    right: 0;
+                    top: 0;
+                    border: 16px $--border-style-base $--color-success;
+                    border-left-color: transparent;
+                    border-bottom-color: transparent;
+                    z-index: 999;
+                  }
+
+                  @include when(autoHeight) {
+                    .el-image__inner {
+                      width: auto;
+                      max-width: 100%;
+                      height: auto;
+                    }
+                  }
+
+                  @include when(autoWidth) {
+                    .el-image__inner {
+                      width: auto;
+                      height: auto;
+                      max-height: 100%;
+                    }
+                  }
+                }
+
+                @include e(image-size) {
+                  position: absolute;
+                  z-index: 998;
+                  top: 100px;
+                  right: 0;
+                  left: 0;
+                  padding: 2px 0;
+                  -webkit-border-radius: 0 0 #{$--border-radius-base - 1} #{$--border-radius-base - 1};
+                  -moz-border-radius: 0 0 #{$--border-radius-base - 1} #{$--border-radius-base - 1};
+                  border-radius: 0 0 #{$--border-radius-base - 1} #{$--border-radius-base - 1};
+                  text-align: center;
+                  color: $--color-white;
+                  background-color: rgba(0, 0, 0, .5);
+                }
+
+                @include e(image-name) {
+                  display: block;
+                  padding: 5px 0 16px;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                  overflow: hidden;
+                }
+
+                .el-icon-check {
+                  display: none;
+                  position: absolute;
+                  z-index: 999;
+                  top: 2px;
+                  right: 2px;
+                  font-size: $--font-size-medium;
+                  font-weight: $--font-weight-primary;
+                  color: $--color-white;
+                }
+
+                @include m(selected) {
+                  .el-image {
+                    &::after, &::before {
+                      display: block;
+                    }
+                  }
+                  .el-icon-check {
+                    display: block;
+                  }
+                }
+              }
+            }
+          }
+
+          @include e(actions) {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 9px 20px;
+
+            @include e(pagination) {
+              display: flex;
+              align-items: center;
+
+              @include e(statistic) {
+                margin-left: 8px;
+              }
+            }
+          }
+
+          @include e(top-actions) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+
+            @include e(search) {
+              text-align: right;
+
+              .el-input {
+                margin-right: 10px;
+                width: 200px;
+
+                .el-input__inner {
+                  border-color: $--border-color-light;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      @include e(local) {
+        padding: 0 20px;
+        position: relative;
+
+        @include e(form) {
+
+          @include e(form-item) {
+            margin-top: 30px;
+
+            &:first-child {
+              margin-top: 0;
+            }
+
+            @include e(form-label) {
+              margin-bottom: 20px;
+              color: $--color-black;
+
+              &::before {
+                display: inline-block;
+                vertical-align: middle;
+                content: "";
+                width: 4px;
+                height: 12px;
+                background-color: $--color-success;
+              }
+
+              span {
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 10px;
+              }
+
+              @include e(hint) {
+                color: $--color-text-secondary;
+              }
+            }
+
+            @include e(form-value) {
+              padding-left: 15px;
+
+              @include e(uploader) {
+                @include when(exceed) {
+                  .el-upload--picture-card {
+                    display: none;
+                  }
+                }
+              }
+
+              .el-upload-list--picture-card {
+
+                .el-progress {
+                  width: 80px;
+                  background-color: rgba(0, 0, 0, .75);
+
+                  .el-progress__text {
+                    color: $--color-white;
+                  }
+                }
+
+                .el-upload-list__item {
+                  margin: 0 20px 20px 0;
+                  width: 80px;
+                  height: 80px;
+                  border: none;
+                }
+              }
+
+              .el-upload--picture-card {
+                margin-bottom: 20px;
+                width: 80px;
+                height: 80px;
+                line-height: 80px;
+
+                i {
+                  line-height: inherit;
+                }
+              }
+
+              @include e(uploaded-image) {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                height: 80px;
+
+                &::before {
+                  position: absolute;
+                  top: -14px;
+                  right: -14px;
+                  width: 30px;
+                  height: 30px;
+                  content: "";
+                  -webkit-border-radius: 50%;
+                  -moz-border-radius: 50%;
+                  border-radius: 50%;
+                  background-color: $--color-danger;
+                }
+
+                .el-icon-close {
+                  display: block !important;
+                  position: absolute;
+                  top: 1px;
+                  right: 0;
+                  opacity: 1;
+                  font-size: $--font-size-extra-small;
+                  color: $--color-white;
+                }
+
+                @include e(uploaded-thumbnail) {
+                  @include when(autoWidth) {
+                    width: auto;
+                    height: auto;
+                    max-height: 100%;
+                  }
+
+                  @include when(autoHeight) {
+                    width: auto;
+                    max-width: 100%;
+                    height: auto;
+                  }
+                }
+              }
+
+              .el-select {
+                width: 400px;
+              }
+
+              .el-link {
+                margin-left: 10px;
+              }
+            }
+          }
+        }
+
+        @include e(operations) {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          padding: 9px 20px;
+          text-align: right;
+        }
+      }
+    }
+}
