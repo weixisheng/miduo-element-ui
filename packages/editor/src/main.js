@@ -1,6 +1,6 @@
 import 'tinymce/tinymce';
 import 'tinymce/themes/silver/theme';
-import 'tinymce/icons/default/icons.js';
+// import 'tinymce/icons/default/icons.js';
 import Editor from '@tinymce/tinymce-vue';
 import GalleryPlugin from './plugins/gallery/plugin';
 import Gallery from 'miduo-element-ui/packages/gallery/index';
@@ -8,7 +8,7 @@ import Gallery from 'miduo-element-ui/packages/gallery/index';
 export default {
   defaultEditorConfiguration: {
     disabled: false,
-    plugins: 'link lists image imagetools code table wordcount gallery',
+    plugins: 'link lists image imagetools code table colorpicker textcolor wordcount contextmenu gallery',
     toolbar: [
       'bold italic  underline strikethrough',
       'fontsizeselect',
@@ -24,7 +24,6 @@ export default {
     init: {
       height: 300,
       branding: false,
-      menubar: false,
       contextmenu: 'link image imagetools table spellchecker gallery',
       skin: false,
       content_css: false
