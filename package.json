@@ -1,6 +1,6 @@
 {
   "name": "miduo-element-ui",
-  "version": "2.14.3",
+  "version": "2.14.4",
   "description": "基于element-ui封装的内部组件库",
   "main": "lib/element-ui.common.js",
   "files": [
