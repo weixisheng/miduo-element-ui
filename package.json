@@ -1,7 +1,7 @@
 {
   "name": "miduo-element-ui",
-  "version": "2.14.2",
-  "description": "A Component Library for Vue.js.",
+  "version": "2.14.3",
+  "description": "基于element-ui封装的内部组件库",
   "main": "lib/element-ui.common.js",
   "files": [
     "lib",
